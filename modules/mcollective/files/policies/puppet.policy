@@ -1,0 +1,2 @@
+# /etc/mcollective/policies/puppet.policy
+policy default allow
