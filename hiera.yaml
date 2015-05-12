@@ -2,7 +2,7 @@
 :backends:
     - yaml
 :yaml:
-    :datadir: '/etc/puppet/environments/%{::environment}/hieradata'
+    :datadir: '/etc/puppet/hieradata'
 :hierarchy:
     - %{::certname}
     - %{::operatingsystem}

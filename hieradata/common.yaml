@@ -1,43 +1,46 @@
 # Add these hiera values to a hiera file used by all systems
 #
-classes:
-  - mcollective::server
+#classes:
+#  - mcollective::server
+#
+#mcollective::hosts:
+#  - 'activemq.example.net'
+#mcollective::collectives:
+#  - 'mcollective'
+#
+## The module won't initialize without values here
+## use a command like 'openssl rand -base64 32' to generate unique values
+#mcollective::client_password: ''
+#mcollective::server_password: ''
+#mcollective::broker_password: ''
+#mcollective::psk_key        : ''
+#
+#mcollective::connector         : 'activemq'
+#mcollective::connector_ssl     : false
+#mcollective::connector_ssl_type: 'anonymous'
+#
+## Server configuration
+#mcollective::server::logger_type: 'file'
+#mcollective::server::log_level  : 'debug'
+#
+## Client configuration
+#mcollective::client::package_ensure: 'absent'
+#
+## Agent plugins to install
+#mcollective::plugin::agents:
+#  filemgr:
+#    version: 'latest'
+#  nettest:                                                                                                                                                                                   
+#    version: 'latest'
+#  package:
+#    version: 'latest'
+#  service:
+#    version: 'latest'
+#  # puppet has dependency on another package
+#  puppet :
+#    version     : 'latest'
+#    dependencies:
+#      - Package['puppet']
 
-mcollective::hosts:
-  - 'activemq.example.net'
-mcollective::collectives:
-  - 'mcollective'
 
-# The module won't initialize without values here
-# use a command like 'openssl rand -base64 32' to generate unique values
-mcollective::client_password: ''
-mcollective::server_password: ''
-mcollective::broker_password: ''
-mcollective::psk_key        : ''
-
-mcollective::connector         : 'activemq'
-mcollective::connector_ssl     : false
-mcollective::connector_ssl_type: 'anonymous'
-
-# Server configuration
-mcollective::server::logger_type: 'file'
-mcollective::server::log_level  : 'debug'
-
-# Client configuration
-mcollective::client::package_ensure: 'absent'
-
-# Agent plugins to install
-mcollective::plugin::agents:
-  filemgr:
-    version: 'latest'
-  nettest:                                                                                                                                                                                   
-    version: 'latest'
-  package:
-    version: 'latest'
-  service:
-    version: 'latest'
-  # puppet has dependency on another package
-  puppet :
-    version     : 'latest'
-    dependencies:
-      - Package['puppet']
+mcollective::server::audit_logfile: /var/log/mcollective-audit.log

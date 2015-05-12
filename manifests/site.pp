@@ -27,6 +27,7 @@ node default {
 		resource_type_whitelist => 'package,service',
 		authorization_enable	=> true,
 		authorization_default_policy	=> 'default_deny',
+		audit_logfile => hiera('mcollective::server::audit_logfile'),
 		#security_provider	=> 'ssl',
 	}
 
