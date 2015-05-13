@@ -1,46 +1,99 @@
 # Add these hiera values to a hiera file used by all systems
 #
 #classes:
-#  - mcollective::server
+#  - mcollective::erver
 #
-#mcollective::hosts:
-#  - 'activemq.example.net'
+mcollective::hosts:
+  - 'node0.example.net'
+  - 'node1.example.net'
+
 #mcollective::collectives:
-#  - 'mcollective'
-#
-## The module won't initialize without values here
-## use a command like 'openssl rand -base64 32' to generate unique values
-#mcollective::client_password: ''
-#mcollective::server_password: ''
-#mcollective::broker_password: ''
-#mcollective::psk_key        : ''
-#
-#mcollective::connector         : 'activemq'
-#mcollective::connector_ssl     : false
-#mcollective::connector_ssl_type: 'anonymous'
-#
+#  - 'mcollective' #
+
+mcollective::client_password: '0Fp6FxlX7MJl7k4TJXVCq5F2v+ZU1Sqz/NI4Di9XsAg='
+mcollective::server_password: 'tl38YZmgngQMVsnxu7AfhG+tA85RmR9mirwUVX3AQWw='
+mcollective::broker_password: 'j2BgWYOWHze72cdV+ktSismdi2x9mFV+wmzc8qxFqCM='
+mcollective::psk_key        : 'pud2cfrCbDgb37AE8YvBneeDAOlnVtXzZCPtAe+aUXo='
+
+mcollective::connector         : 'activemq'
+mcollective::connector_ssl     : true
+mcollective::connector_ssl_type: 'trusted'
+mcollective::security_provider : 'ssl'
+
 ## Server configuration
-#mcollective::server::logger_type: 'file'
+mcollective::server::logger_type: 'file'
 #mcollective::server::log_level  : 'debug'
-#
-## Client configuration
-#mcollective::client::package_ensure: 'absent'
-#
-## Agent plugins to install
-#mcollective::plugin::agents:
-#  filemgr:
-#    version: 'latest'
-#  nettest:                                                                                                                                                                                   
-#    version: 'latest'
-#  package:
-#    version: 'latest'
-#  service:
-#    version: 'latest'
-#  # puppet has dependency on another package
-#  puppet :
-#    version     : 'latest'
-#    dependencies:
-#      - Package['puppet']
-
-
+mcollective::server::resource_type_whitelist: 'package,service'
 mcollective::server::audit_logfile: /var/log/mcollective-audit.log
+mcollective::server::authorization_enable: true
+mcollective::server::authorization_default_policy: 'default_deny'
+mcollective::plugin::actionpolicies:
+  default_deny:
+    default: 'deny'
+  puppet:
+    #default: 'allow'
+    default: 'deny'
+    rules:
+      '00 allow puppet to fix policies':
+        policy : 'allow'
+        caller : *
+        actions: 'count status runonce rullall'
+        facts  : *
+        classes: *
+  service:
+    default: 'allow'
+
+
+## Client configuration
+mcollective::client::package_ensure: 'absent'
+
+mcollective::userconfigs:
+  vagrant:
+    logger_type: 'syslog'
+    log_level  : 'debug'
+
+ #mco_test:
+ #   logger_type: 'syslog'
+
+
+## Agent plugins to install
+mcollective::plugin::agents:
+  filemgr:
+    version: 'latest'
+  nettest:
+    version: 'latest'
+  package:
+    version: 'latest'
+  service:
+    version: 'latest'
+  nrpe :
+    version: 'latest'
+  puppet :
+    version: 'latest'
+
+
+# Middleware configuration
+# You must define these
+# use a command like 'openssl rand -base64 24' to generate unique values
+mcollective::middleware::jetty_password  : '8GJXLKGPrNTm55Qsd4fWIGX6I/2EUCMo'
+mcollective::middleware::use_jmx  : true
+mcollective::middleware::keystore_password  : 'qtP+wmVAaCDWYSjDNIVKYYnISTA'
+mcollective::middleware::truststore_password: 'ajJgv53WDzvgSA+6IcQIm7eiBeU'
+
+mcollective::client::package_ensure: 'latest'
+#mcollective::client::unix_group    : 'wheel'
+#
+## Client plugins to install
+mcollective::plugin::clients:
+  filemgr:
+    version: 'latest'
+  nettest:
+    version: 'latest'
+  package:
+    version: 'latest'
+  service:
+    version: 'latest'
+  nrpe:
+    version: 'latest'
+  puppet:
+    version: 'latest'
