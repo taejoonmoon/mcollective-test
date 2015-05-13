@@ -4,6 +4,6 @@
 :yaml:
     :datadir: '/etc/puppet/hieradata'
 :hierarchy:
-    - %{::certname}
+    - %{::fqdn}
     - %{::operatingsystem}
     - common

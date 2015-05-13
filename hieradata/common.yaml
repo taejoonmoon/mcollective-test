@@ -1,15 +1,8 @@
 # Add these hiera values to a hiera file used by all systems
-#
-#classes:
-#  - mcollective::erver
-#
+
 mcollective::hosts:
   - 'node0.example.net'
   - 'node1.example.net'
-
-#mcollective::collectives:
-#  - 'mcollective' #
-
 mcollective::client_password: '0Fp6FxlX7MJl7k4TJXVCq5F2v+ZU1Sqz/NI4Di9XsAg='
 mcollective::server_password: 'tl38YZmgngQMVsnxu7AfhG+tA85RmR9mirwUVX3AQWw='
 mcollective::broker_password: 'j2BgWYOWHze72cdV+ktSismdi2x9mFV+wmzc8qxFqCM='
@@ -45,15 +38,16 @@ mcollective::plugin::actionpolicies:
 
 
 ## Client configuration
-mcollective::client::package_ensure: 'absent'
+############# Please fix bug
+mcollective::client::package::ensure: 'absent'
 
-mcollective::userconfigs:
-  vagrant:
-    logger_type: 'syslog'
-    log_level  : 'debug'
-
- #mco_test:
- #   logger_type: 'syslog'
+#mcollective::userconfigs:
+#  vagrant:
+#    logger_type: 'syslog'
+#    log_level  : 'debug'
+#
+# #mco_test:
+# #   logger_type: 'syslog'
 
 
 ## Agent plugins to install
@@ -80,20 +74,20 @@ mcollective::middleware::use_jmx  : true
 mcollective::middleware::keystore_password  : 'qtP+wmVAaCDWYSjDNIVKYYnISTA'
 mcollective::middleware::truststore_password: 'ajJgv53WDzvgSA+6IcQIm7eiBeU'
 
-mcollective::client::package_ensure: 'latest'
+#mcollective::client::package_ensure: 'latest'
 #mcollective::client::unix_group    : 'wheel'
 #
 ## Client plugins to install
-mcollective::plugin::clients:
-  filemgr:
-    version: 'latest'
-  nettest:
-    version: 'latest'
-  package:
-    version: 'latest'
-  service:
-    version: 'latest'
-  nrpe:
-    version: 'latest'
-  puppet:
-    version: 'latest'
+#mcollective::plugin::clients:
+#  filemgr:
+#    version: 'latest'
+#  nettest:
+#    version: 'latest'
+#  package:
+#    version: 'latest'
+#  service:
+#    version: 'latest'
+#  nrpe:
+#    version: 'latest'
+#  puppet:
+#    version: 'latest'
