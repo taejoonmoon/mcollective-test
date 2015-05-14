@@ -16,55 +16,33 @@ mcollective::security_provider : 'ssl'
 ## Server configuration
 mcollective::server::logger_type: 'file'
 #mcollective::server::log_level  : 'debug'
-mcollective::server::resource_type_whitelist: 'package,service'
+#mcollective::server::resource_type_whitelist: 'package,service,inventory'
 mcollective::server::audit_logfile: /var/log/mcollective-audit.log
 mcollective::server::authorization_enable: true
-mcollective::server::authorization_default_policy: 'default_deny'
-mcollective::plugin::actionpolicies:
-  default_deny:
-    default: 'deny'
-  puppet:
-    #default: 'allow'
-    default: 'deny'
-    rules:
-      '00 allow puppet to fix policies':
-        policy : 'allow'
-        caller : *
-        actions: 'count status runonce rullall'
-        facts  : *
-        classes: *
-  service:
-    default: 'allow'
+#mcollective::server::authorization_default_policy: default_deny
+#mcollective::server::authorization_default_policy: allow_everything
+#mcollective::plugin::actionpolicies:
+#  default_deny:
+#    default: 'allow'
+#  allow_everything:
+#    default: 'allow'
+#  puppet:
+#    #default: 'allow'
+#    default: 'deny'
+#    rules:
+#      '00 allow puppet to fix policies':
+#        policy : 'allow'
+#        caller : *
+#        actions: 'count status runonce rullall'
+#        facts  : *
+#        classes: *
+#  service:
+#    default: 'allow'
 
 
 ## Client configuration
 ############# Please fix bug
 mcollective::client::package::ensure: 'absent'
-
-#mcollective::userconfigs:
-#  vagrant:
-#    logger_type: 'syslog'
-#    log_level  : 'debug'
-#
-# #mco_test:
-# #   logger_type: 'syslog'
-
-
-## Agent plugins to install
-mcollective::plugin::agents:
-  filemgr:
-    version: 'latest'
-  nettest:
-    version: 'latest'
-  package:
-    version: 'latest'
-  service:
-    version: 'latest'
-  nrpe :
-    version: 'latest'
-  puppet :
-    version: 'latest'
-
 
 # Middleware configuration
 # You must define these
@@ -73,21 +51,3 @@ mcollective::middleware::jetty_password  : '8GJXLKGPrNTm55Qsd4fWIGX6I/2EUCMo'
 mcollective::middleware::use_jmx  : true
 mcollective::middleware::keystore_password  : 'qtP+wmVAaCDWYSjDNIVKYYnISTA'
 mcollective::middleware::truststore_password: 'ajJgv53WDzvgSA+6IcQIm7eiBeU'
-
-#mcollective::client::package_ensure: 'latest'
-#mcollective::client::unix_group    : 'wheel'
-#
-## Client plugins to install
-#mcollective::plugin::clients:
-#  filemgr:
-#    version: 'latest'
-#  nettest:
-#    version: 'latest'
-#  package:
-#    version: 'latest'
-#  service:
-#    version: 'latest'
-#  nrpe:
-#    version: 'latest'
-#  puppet:
-#    version: 'latest'

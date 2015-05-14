@@ -13,7 +13,7 @@ class mcollective::facts::cronjob {
   # if the facts class isn't loaded, remove the cronjob
   $enable = $mcollective::facts::enable ? {
     'present'  => 'present',
-    default    => 'absent',
+    default    => 'present',
   }
 
   # shorten for ease of use
