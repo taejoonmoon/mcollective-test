@@ -1,0 +1,16 @@
+{
+  "nodes": {
+    "node0.example.net": {
+      ":ip": "192.168.4.11",
+      ":memory": 512,
+      ":box": "chef/centos-6.5",
+      ":bootstrap": "bootstrap-activemq.sh"
+    },
+    "node2.example.net": {
+      ":ip": "192.168.4.13",
+      ":memory": 512,
+      ":box": "chef/centos-6.5",
+      ":bootstrap": "bootstrap-node.sh"
+    }
+  }
+}
