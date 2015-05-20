@@ -16,26 +16,20 @@
 # Refer to the Style Guide in the WIKI: 
 # http://wiki.cdnetworks.com/confluence/display/~daehyung.lee/Puppet+Style+Guide+for+SYSENG
 class profiles::mcollective {
-	### common mcollective config
+  ## common mcollective config
   class { '::mcollective':
     hosts => hiera('mcollective::hosts'),
     client_password => hiera('mcollective::client_password'),
     server_password => hiera('mcollective::server_password'),
     broker_password => hiera('mcollective::broker_password'),
     psk_key => hiera('mcollective::psk_key'),
-    # activemq
-    connector => hiera('mcollective::connector'), 
-    connector_ssl => hiera('mcollective::connector_ssl'), 
-    connector_ssl_type => hiera('mcollective::connector_ssl_type'), 
+    connector => hiera('mcollective::connector'),
+    connector_ssl => hiera('mcollective::connector_ssl'),
+    connector_ssl_type => hiera('mcollective::connector_ssl_type'),
     security_provider  => hiera('mcollective::security_provider'),
-    # rabbitmq test
-    #connector => 'rabbitmq', 
-    #connector_ssl => false,
-    #connector_ssl_type => 'anonymous',
-    #security_provider  => 'psk',
   }
 
-	## common mcollective server config
+  # common mcollective server config
   class { '::mcollective::server':
     logger_type => hiera('mcollective::server::logger_type'),
     #log_level => hiera('mcollective::server::log_level'),
@@ -58,7 +52,7 @@ class profiles::mcollective {
 ############# Please fix bug
 #mcollective::client::package::ensure: 'absent'
 
-	## Agent plugins to install
+  # Agent plugins to install
   mcollective::plugin::agent { 'package': }
   mcollective::plugin::agent { 'puppet': }
   mcollective::plugin::agent { 'filemgr': }

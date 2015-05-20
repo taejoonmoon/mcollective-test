@@ -8,10 +8,17 @@ mcollective::server_password: 'tl38YZmgngQMVsnxu7AfhG+tA85RmR9mirwUVX3AQWw='
 mcollective::broker_password: 'j2BgWYOWHze72cdV+ktSismdi2x9mFV+wmzc8qxFqCM='
 mcollective::psk_key        : 'pud2cfrCbDgb37AE8YvBneeDAOlnVtXzZCPtAe+aUXo='
 
+# activemq
 mcollective::connector         : 'activemq'
 mcollective::connector_ssl     : true
 mcollective::connector_ssl_type: 'trusted'
 mcollective::security_provider : 'ssl'
+
+## rabbitmq
+#mcollective::connector         : 'rabbitmq'
+#mcollective::connector_ssl     : false
+#mcollective::connector_ssl_type: 'anonymous'
+#mcollective::security_provider : 'psk'
 
 ## Server configuration
 mcollective::server::logger_type: 'file'
