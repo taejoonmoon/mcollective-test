@@ -23,10 +23,16 @@ class profiles::mcollective {
     server_password => hiera('mcollective::server_password'),
     broker_password => hiera('mcollective::broker_password'),
     psk_key => hiera('mcollective::psk_key'),
-    connector => hiera('mcollective::connector'), 
-    connector_ssl => hiera('mcollective::connector_ssl'), 
-    connector_ssl_type => hiera('mcollective::connector_ssl_type'), 
-    security_provider  => hiera('mcollective::security_provider'),
+    # activemq
+    #connector => hiera('mcollective::connector'), 
+    #connector_ssl => hiera('mcollective::connector_ssl'), 
+    #connector_ssl_type => hiera('mcollective::connector_ssl_type'), 
+    #security_provider  => hiera('mcollective::security_provider'),
+    # rabbitmq test
+    connector => 'rabbitmq', 
+    connector_ssl => false,
+    connector_ssl_type => 'anonymous',
+    security_provider  => 'psk',
   }
 
 	## common mcollective server config

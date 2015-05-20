@@ -14,16 +14,28 @@ node default {
 		mode  => 0755,
 		content => "sudo /usr/bin/puppet agent --test",
 	}
+	
+	# install and config ntpd
+	package {'ntp':
+		ensure => 'latest',
+	}
+	service {'ntpd':
+		ensure => 'running',
+		enable => true,
+		require => Package['ntp'],
+	}
 
 }
 
 node 'node0.example.net' inherits default {
-	include profiles::activemq
+	#include profiles::activemq
+	include profiles::rabbitmq
 	include profiles::mcollective_client
 }
 
 node 'node1.example.net' inherits default {
-	include profiles::activemq
+	include profiles::mcollective
+	#include profiles::activemq
 }
 
 node 'node2.example.net' inherits default {

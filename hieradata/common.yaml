@@ -2,7 +2,7 @@
 
 mcollective::hosts:
   - 'node0.example.net'
-  - 'node1.example.net'
+#  - 'node1.example.net'
 mcollective::client_password: '0Fp6FxlX7MJl7k4TJXVCq5F2v+ZU1Sqz/NI4Di9XsAg='
 mcollective::server_password: 'tl38YZmgngQMVsnxu7AfhG+tA85RmR9mirwUVX3AQWw='
 mcollective::broker_password: 'j2BgWYOWHze72cdV+ktSismdi2x9mFV+wmzc8qxFqCM='
@@ -51,3 +51,9 @@ mcollective::middleware::jetty_password  : '8GJXLKGPrNTm55Qsd4fWIGX6I/2EUCMo'
 mcollective::middleware::use_jmx  : true
 mcollective::middleware::keystore_password  : 'qtP+wmVAaCDWYSjDNIVKYYnISTA'
 mcollective::middleware::truststore_password: 'ajJgv53WDzvgSA+6IcQIm7eiBeU'
+
+# rabbitmq
+mcollective::middleware::directory  : /etc/rabbitmq
+mcollective::middleware::config_file  : rabbitmq.config
+mcollective::middleware::user  : rabbitmq
+mcollective::middleware::service  : rabbitmq-server
