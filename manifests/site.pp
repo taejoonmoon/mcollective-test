@@ -28,8 +28,8 @@ node default {
 }
 
 node 'node0.example.net' inherits default {
-	#include profiles::activemq
-	include profiles::rabbitmq
+	include profiles::activemq
+	#include profiles::rabbitmq
 	include profiles::mcollective_client
 }
 

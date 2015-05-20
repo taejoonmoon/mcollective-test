@@ -51,9 +51,3 @@ mcollective::middleware::jetty_password  : '8GJXLKGPrNTm55Qsd4fWIGX6I/2EUCMo'
 mcollective::middleware::use_jmx  : true
 mcollective::middleware::keystore_password  : 'qtP+wmVAaCDWYSjDNIVKYYnISTA'
 mcollective::middleware::truststore_password: 'ajJgv53WDzvgSA+6IcQIm7eiBeU'
-
-# rabbitmq
-mcollective::middleware::directory  : /etc/rabbitmq
-mcollective::middleware::config_file  : rabbitmq.config
-mcollective::middleware::user  : rabbitmq
-mcollective::middleware::service  : rabbitmq-server
